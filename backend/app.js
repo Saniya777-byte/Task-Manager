@@ -8,15 +8,17 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 const app = express();
 
-const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
-  .split(',')
-  .map((origin) => origin.trim());
+const allowedOrigins = [
+  'http://localhost:5173',
+  process.env.CLIENT_URL,
+].filter(Boolean);
 
-app.use(helmet());
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: '20kb' }));
 app.use(rateLimit({
   windowMs: 15 * 60 * 1000,
