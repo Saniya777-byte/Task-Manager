@@ -2,7 +2,7 @@ import axios from 'axios';
 import { clearStoredAuth, getStoredAuth } from '../utils/storage';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://task-manager-1ods.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   },
